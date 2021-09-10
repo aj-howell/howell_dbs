@@ -43,6 +43,12 @@ ALTER TABLE cats DROP gender;
 
 DESCRIBE cats;
 
+CREATE DATABASE school;
+
+SHOW DATABASE;
+
+USE school;
+
 CREATE TABLE instructors
 (
 insturctor_id INT NOT NULL AUTO_INCREMENT,
