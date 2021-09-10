@@ -1,15 +1,15 @@
 CREATE DATABASE school;
 
-SHOW DATABASE;
+SHOW DATABASES;
 
 USE school;
 
 CREATE TABLE instructors
 (
 insturctor_id INT NOT NULL AUTO_INCREMENT,
-inst_first_name VARCHAR(20) NOT NULL,
-inst_last_name VARCHAR(20) NOT NULL,
-campus_phone INT NOT NULL
+inst_first_name VARCHAR(20),
+inst_last_name VARCHAR(20),
+campus_phone INT,
 PRIMARY KEY (insturctor_id)
 
 );
