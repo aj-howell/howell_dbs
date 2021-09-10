@@ -9,7 +9,7 @@ CREATE TABLE instructors
 insturctor_id INT NOT NULL AUTO_INCREMENT,
 inst_first_name VARCHAR(20),
 inst_last_name VARCHAR(20),
-campus_phone INT,
+campus_phone VARCHAR(20),
 PRIMARY KEY (insturctor_id)
 
 );
