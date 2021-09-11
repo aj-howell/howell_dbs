@@ -15,9 +15,9 @@ PRIMARY KEY (insturctor_id)
 );
 
 INSERT INTO instructors (inst_first_name, inst_last_name, campus_phone ) VALUES
-('Kira', 'Bently', '363-9948'),
-('Timothy', 'Ennis', '527-4992'),
-('Shannon', 'Black', '322-5992'),
-('Estela', 'Rosales', '322-6992');
+('Kira', 'Bently', '3639948'),
+('Timothy', 'Ennis', '5274992'),
+('Shannon', 'Black', '3225992'),
+('Estela', 'Rosales', '3226992');
 
 SELECT * FROM instructors;
