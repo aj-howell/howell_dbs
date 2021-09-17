@@ -1,6 +1,6 @@
 CREATE DATABASE movie_ratings;
 
-SHOW DATABASE;
+SHOW DATABASES;
 
 USE movie_ratings; 
 
@@ -13,7 +13,7 @@ MovieID INT NOT NULL AUTO_INCREMENT,
 MovieTitle VARCHAR(200) NOT NULL,
 ReleaseDate DATETIME NOT NULL,
 Genre VARCHAR(50) NOT NULL,
-PRIMARY (MovieID);
+PRIMARY (MovieID)
 
 );
 
