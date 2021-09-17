@@ -31,7 +31,7 @@ CREATE TABLE Consumers
 ConsumerID INT NOT NULL AUTO_INCREMENT,
 First_name VARCHAR(15) NOT NULL,
 Last_name VARCHAR(15) NOT NULL,
-Address VARCHAR(15) NOT NULL,
+Address VARCHAR(50) NOT NULL,
 City VARCHAR(25) NOT NULL,
 State VARCHAR(2) NOT NULL,
 Zip INT NOT NULL,
@@ -39,7 +39,7 @@ PRIMARY KEY(ConsumerID)
 
 );
 
-INSERT INTO Consumers (First_name, Last_name, Address, City, State, Zip )
+INSERT INTO Consumers (First_name, Last_name, Address, City, State, Zip)
 
 VALUES
 ('Toru', 'Okada', '800 Glenridge Ave', 'Hobart', 'IN', 46342),
