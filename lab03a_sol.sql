@@ -46,6 +46,3 @@ VALUES
 ('Kumiko','Okada','864 NW Bohemia St','Vincentown','NJ',08088),
 ('Noboru','Wataya','342 Joy Ridge St','Hermitage','TN',37076),
 ('May','Kasahara','5 Kent Rd','East Haven','CT', 06512); 
-
-
-
