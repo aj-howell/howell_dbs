@@ -27,14 +27,14 @@ VALUES
 
 CREATE TABLE Consumers
 (
-FOREIGN KEY(ConsumerID),
+
 First_name VARCHAR(15) NOT NULL,
 Last_name VARCHAR(15) NOT NULL,
 Address VARCHAR(15) NOT NULL,
 City VARCHAR(25) NOT NULL,
 State VARCHAR(2) NOT NULL,
-Zip INT NOT NULL
-
+Zip INT NOT NULL,
+FOREIGN KEY(ConsumerID)
 );
 
 INSERT INTO Consumers (First_name, Last_name, Address, City, State, Zip )
