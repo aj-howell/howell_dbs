@@ -18,7 +18,7 @@ PRIMARY KEY(MovieID)
 );
 
 -- I am now going insert into the fields 
-INSERT INTO Movies (MovieID, MovieTitle, ReleaseDate, Genre) 
+INSERT INTO Movies (MovieTitle, ReleaseDate, Genre) 
 
 VALUES
 ('The Hunt for Red October', '1990-03-02', 'Action, Adventure, Thriller'),
