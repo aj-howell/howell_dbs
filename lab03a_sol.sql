@@ -39,7 +39,7 @@ PRIMARY KEY(ConsumerID)
 
 );
 
-INSERT INTO Consumers (First_name, Last_name, Address, City, State, Zip)
+INSERT INTO Consumers (First_name,Last_name,Address, City, State, Zip)
 
 VALUES
 ('Toru','Okada','800 Glenridge Ave','Hobart','IN',46342),
