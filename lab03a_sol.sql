@@ -1,6 +1,6 @@
 CREATE DATABASE movie_ratings;
 
-SHOW DATABASE
+SHOW DATABASE;
 
 USE movie_ratings; 
 
