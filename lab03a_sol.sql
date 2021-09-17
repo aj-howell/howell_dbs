@@ -17,14 +17,6 @@ PRIMARY KEY(MovieID)
 
 );
 
--- I am now going insert into the fields 
-INSERT INTO Movies (MovieTitle, ReleaseDate, Genre) 
-
-VALUES
-('The Hunt for Red October', '1990-03-02', 'Action, Adventure, Thriller'),
-('Lady Bird', '2017-12-01', 'Comedy, Drama'),
-('Inception', '2010-08-16', 'Action, Adventure, Sci-Fi');
-
 CREATE TABLE Consumers
 (
 
@@ -34,8 +26,19 @@ Address VARCHAR(15) NOT NULL,
 City VARCHAR(25) NOT NULL,
 State VARCHAR(2) NOT NULL,
 Zip INT NOT NULL,
-FOREIGN KEY(ConsumerID)
+FOREIGN KEY (ConsumerID),
+REFERENCES Movies(ConsumerID)
 );
+
+
+-- I am now going insert into the fields 
+INSERT INTO Movies (MovieTitle, ReleaseDate, Genre) 
+
+VALUES
+('The Hunt for Red October', '1990-03-02', 'Action, Adventure, Thriller'),
+('Lady Bird', '2017-12-01', 'Comedy, Drama'),
+('Inception', '2010-08-16', 'Action, Adventure, Sci-Fi');
+
 
 INSERT INTO Consumers (First_name, Last_name, Address, City, State, Zip )
 
