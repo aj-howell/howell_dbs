@@ -34,8 +34,7 @@ Address VARCHAR(15) NOT NULL,
 City VARCHAR(25) NOT NULL,
 State VARCHAR(2) NOT NULL,
 Zip INT NOT NULL,
-FOREIGN KEY (ConsumerID),
-REFERENCES Movies(ConsumerID)
+FOREIGN KEY (ConsumerID)
 );
 
 INSERT INTO Consumers (First_name, Last_name, Address, City, State, Zip )
