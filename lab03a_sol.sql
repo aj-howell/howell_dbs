@@ -25,7 +25,26 @@ VALUES
 ('Lady Bird', '2017-12-01', 'Comedy, Drama'),
 ('Inception', '2010-08-16', 'Action, Adventure, Sci-Fi');
 
+CREATE TABLE Consumers
+(
 
+ConsumerID INT NOT NULL AUTO_INCREMENT,
+First_name VARCHAR(15) NOT NULL,
+Last_name VARCHAR(15) NOT NULL,
+Address VARCHAR(15) NOT NULL,
+City VARCHAR(25) NOT NULL,
+State VARCHAR(2) NOT NULL,
+Zip INT NOT NULL,
+FOREIGN KEY(ConsumerID)
+);
+
+INSERT INTO Consumers (First_name, Last_name, Address, City, State, Zip )
+
+VALUES
+('Toru', 'Okada', '800 Glenridge Ave', 'Hobart', 'IN', 46342),
+('Kumiko' ,'Okada', '864 NW Bohemia St', 'Vincentown' ,'NJ', 08088),
+('Noboru', 'Wataya', '342 Joy Ridge St', 'Hermitage','TN', 37076),
+('May', 'Kasahara', '5 Kent Rd', 'East Haven','CT', 06512); 
 
 
 
