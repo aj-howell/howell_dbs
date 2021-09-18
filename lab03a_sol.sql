@@ -85,6 +85,12 @@ SELECT consumer_first_name, consumer_last_name, movie_name, rating
  -- STEP 6
  DROP DATABASE IF EXISTS;
 
+ CREATE DATABASE movie_ratings;
+
+SHOW DATABASES;
+
+USE movie_ratings; 
+
 CREATE TABLE Movies
 (
 
