@@ -111,7 +111,7 @@ FOREIGN KEY(movieID),
 REFERENCES Movies(MovieID),
 genre VARCHAR(50) NOT NULL,
 
-)
+);
 
 INSERT INTO Genres(movieID, genre) 
 
