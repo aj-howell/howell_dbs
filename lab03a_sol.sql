@@ -115,7 +115,7 @@ CREATE TABLE Genres
 (
 FOREIGN KEY(movieID),
 REFERENCES Movies(MovieID),
-genre VARCHAR(50) NOT NULL,
+genre VARCHAR(50) NOT NULL
 
 );
 
