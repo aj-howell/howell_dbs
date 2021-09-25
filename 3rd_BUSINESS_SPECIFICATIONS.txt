@@ -1,0 +1,56 @@
+BUSINESS RULE SPECIFICATIONS
+
+RULE INFORMATION
+
+Statement: Mobile Phone has a primary owner
+
+Constraint: 1:1
+
+Type:     Database Oriented:     X
+          Application Oriented   _
+
+Category: Field Specific:        X 
+          Relationship Specific: _ 
+
+Test On:  Insert:                _ 
+          Delete:                _ 
+          Update:                _
+
+
+STRUCTURES AFFECTED
+
+Field Names: Mobile_phone
+Table Names: Customers
+
+
+FIELD ELEMENTS AFFECTED
+
+Physical Elements: Data Type:           _ 
+                   Length:              _ 
+                   Decimal Places:      _ 
+                   Character Support:   _ 
+                   Input Mask:          _ 
+                   Display Format:      _ 
+
+Logical Elements:  Key Type:            Simple
+                   Key Structure:       _ 
+                   Uniqueness:          X 
+                   Null Support:        _ 
+                   Values Entered By:   _ 
+                   Default Value:       _ 
+                   Range of Values:     _ 
+                   Comparisons Allowed: _ 
+                   Operations Allowed:  _ 
+                   Edit Rule:           _ 
+
+
+ACTION TAKEN
+
+_ 
+
+
+NOTES: _
+
+
+
+
