@@ -1,0 +1,57 @@
+BUSINESS RULE SPECIFICATIONS
+
+RULE INFORMATION
+
+Statement: Never sells his sales at a loss unless it's been three years
+
+Constraint: _
+
+Type:     Database Oriented:     _
+          Application Oriented   X
+
+Category: Field Specific:        X 
+          Relationship Specific: _ 
+
+Test On:  Insert:                _ 
+          Delete:                _ 
+          Update:                _
+
+
+STRUCTURES AFFECTED
+
+Field Names: Net_On_Sale
+Table Names: Transactions
+
+
+FIELD ELEMENTS AFFECTED
+
+Physical Elements: Data Type:           INT
+                   Length:              _ 
+                   Decimal Places:      _ 
+                   Character Support:   _ 
+                   Input Mask:          _ 
+                   Display Format:      _ 
+
+Logical Elements:  Key Type:            Simple
+                   Key Structure:       _ 
+                   Uniqueness:          _ 
+                   Null Support:        _ 
+                   Values Entered By:   _ 
+                   Default Value:       _ 
+                   Range of Values:     _ 
+                   Comparisons Allowed: _ 
+                   Operations Allowed:  _ 
+                   Edit Rule:           _ 
+
+
+ACTION TAKEN
+
+_ 
+
+
+NOTES: _
+
+
+
+
+
