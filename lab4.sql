@@ -10,14 +10,18 @@ USE Rugs;
 -- creating inventories table w/ all the fields needed
 CREATE TABLE Inventories
 (
-    inventory_id INT NOT NULL,
+    inventory_id INT(100) NOT NULL,
     descriptions  VARCHAR(50) NOT NULL,
     purchase_price INT NOT NULL,
     date_acquired DATETIME,
     markup_price INT NOT NULL,
     list_price INT NOT NULL,
+    style_num INT NOT NULL,
+    material_id INT NOT NULL,
+    country_id INT NOT NULL, 
+    dimension INT NOT NULL,
     PRIMARY KEY (inventory_id),
-    FOREIGN KEY(style_id) REFERENCES Styles(style_id)
+    FOREIGN KEY(style_num) REFERENCES Styles(style_num)
     ON DELETE RESTRICT, 
     FOREIGN KEY(material_id) REFERENCES Materials(material_id)
     ON DELETE RESTRICT, 
@@ -33,7 +37,7 @@ CREATE TABLE Customers
     customer_firstname VARCHAR(50) NOT NULL,
     customer_lastname VARCHAR(50) NOT NULL,
     street_address VARCHAR(50) NOT NULL,
-    customer_id INT NOT NULL,
+    customer_id INT(100) NOT NULL,
     city VARCHAR(25) NOT NULL,
     states VARCHAR(25) NOT NULL,
     zip_code INT NOT NULL,
@@ -45,13 +49,14 @@ CREATE TABLE Customers
 
 CREATE TABLE Transactions
 (
-customer_id INT NULL,
-inventory_id INT NOT NULL,
+customer_id INT(100) NOT NULL,
+ inventory_id INT(100) NOT NULL,
+ transaction_id INT AUTO_INCREMENT NOT NULL,
 date_of_sale DATETIME,
 sale INT, 
 net_on_sale INT, 
 date_returned DATETIME,
-PRIMARY KEY (inventory_id,customer_id),
+PRIMARY KEY (transaction_id),
 FOREIGN KEY(inventory_id) REFERENCES Inventories(inventory_id),
 FOREIGN KEY(customer_id) REFERENCES Customers(customer_id)
 
@@ -60,16 +65,17 @@ FOREIGN KEY(customer_id) REFERENCES Customers(customer_id)
 
 CREATE TABLE Loans
 (
+    customer_id INT(100) NOT NULL,
+     transaction_id INT(100) NOT NULL,
     loan_status BINARY,
+    loan_id INT,
     start_trial DATETIME,
     actual_date DATETIME,
     reserved_from DATETIME,
-    customer_id INT NOT NULL,
-    inventory_id INT NOT NULL,
-    FOREIGN KEY(inventory_id) REFERENCES Inventories(inventory_id) 
-    ON DELETE RESTRICT,
+
+    FOREIGN KEY(transaction_id) REFERENCES Transactions(transaction_id),
     FOREIGN KEY(customer_id) REFERENCES Customers(customer_id),
-    PRIMARY KEY (inventory_id,customer_id),
+    PRIMARY KEY (transaction_id, customer_id),
     CHECK (start_trial < actual_date)
     
 );
@@ -84,8 +90,8 @@ PRIMARY KEY(country_id)
 CREATE TABLE Styles
 (
 style_name VARCHAR (25) NOT NULL,
-style_id INT NOT NULL,
-PRIMARY KEY(style_id)
+style_num INT NOT NULL,
+PRIMARY KEY(style_num)
 
 );
 
