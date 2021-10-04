@@ -50,13 +50,12 @@ CREATE TABLE Customers
 CREATE TABLE Transactions
 (
 customer_id INT(100) NOT NULL,
- inventory_id INT(100) NOT NULL,
- transaction_id INT AUTO_INCREMENT NOT NULL,
+inventory_id INT(100) NOT NULL,
 date_of_sale DATETIME,
 sale INT, 
 net_on_sale INT, 
 date_returned DATETIME,
-PRIMARY KEY (transaction_id),
+PRIMARY KEY (customer_id, inventory_id),
 FOREIGN KEY(inventory_id) REFERENCES Inventories(inventory_id),
 FOREIGN KEY(customer_id) REFERENCES Customers(customer_id)
 
@@ -66,17 +65,18 @@ FOREIGN KEY(customer_id) REFERENCES Customers(customer_id)
 CREATE TABLE Loans
 (
     customer_id INT(100) NOT NULL,
-     transaction_id INT(100) NOT NULL,
+    inventory_id INT(100) NOT NULL,
     loan_status BINARY,
     loan_id INT,
     start_trial DATETIME,
     actual_date DATETIME,
     reserved_from DATETIME,
 
-    FOREIGN KEY(transaction_id) REFERENCES Transactions(transaction_id),
+    FOREIGN KEY(inventory_id) REFERENCES Inventories(inventory_id),
     FOREIGN KEY(customer_id) REFERENCES Customers(customer_id),
-    PRIMARY KEY (transaction_id, customer_id),
-    CHECK (start_trial < actual_date)
+    CONSTRAINT loan_date CHECK (start_trial < actual_date),
+    PRIMARY KEY (inventory_id, customer_id)
+    
     
 );
 
