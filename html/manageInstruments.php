@@ -39,21 +39,26 @@ $del_stmt = $conn->prepare("DELETE FROM instruments WHERE instrument_id=?");
 $del_stmt->bind_param('i', $id); 
 
 $resar = $results->fetch_all();
-
+if(array_key_exists("delete_selected", $_POST)){
 for($i=0; $i<$results->num_rows; $i++){
   
     $id = $resar[$i][0];
     
-    if (isset($_POST["checkbox" . $id]) && !$del_stmt->execute()){
+    if (isset($_POST["checkbox" . $id])){
     
-        //$del_stmt->execute();
-    
-       echo $conn->error;
+        $del_stmt->execute();
+        $needs_reload=True;
+       //echo $conn->error;
     }
 
     }
     
+    if($needs_reload){ 
+        header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
+        exit();
+    }
 
+}
 ?>
 
 <?php
@@ -72,10 +77,12 @@ if(array_key_exists("add_records", $_POST))
      ('Keyboard');"); 
 
     $needs_reload=TRUE;
+    $add_stmt->execute();
 
     if($needs_reload=TRUE)
     {
-        $add_stmt->execute();
+       header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
+        exit(); 
 
     }
 }
@@ -86,19 +93,27 @@ if(array_key_exists("add_records", $_POST))
 
 $delete_stmt = $conn->prepare("DELETE FROM instruments");
 
-for($i=0; $i<$results->num_rows; $i++){
-  
-    $id = $resar[$i][0];
-
+if(array_key_exists("delete_selected", $_POST)){
+    for($i=0; $i<$results->num_rows; $i++){
+      
+        $id = $resar[$i][0];
+        
+        if (isset($_POST["all"])){
+        
+            $delete_stmt->execute();
+            $needs_reload=True;
+           //echo $conn->error;
+        }
     
-    if (isset($_POST["all"]) && !$delete_stmt->execute()){
+        }
+        
+        if($needs_reload){ 
+            header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
+            exit();
+        }
     
-        //$del_stmt->execute();
-    
-       echo $conn->error;
     }
-
-    }
+    
 
 ?>
 
@@ -168,7 +183,10 @@ function result_to_table($res) {
 <form action="manageInstruments.php" method=POST>
 <?php 
 $results = $conn->query($sql);
-result_to_table($results); ?>
+result_to_table($results); 
+$conn->close();
+?>
+
 <input type="submit" name= "delete_selected" value="Delete Selected Records" method=POST/>
 </form>
 
