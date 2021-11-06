@@ -1,5 +1,9 @@
-
 <?php
+session_start();
+// $_SESSION['username']=
+// setcookie("mode", time());
+
+// $_COOKIE['mode'] = "light";
 
 ini_set('display_errors', 1); 
  ini_set('display_startup_errors', 1); 
@@ -22,6 +26,58 @@ if ($conn->connect_errno) {
  echo "Connected Successfully!" . "<br>";
  echo "YAY!" . "<br>";
 }
+?>
+
+
+
+<p>
+    Remember this session: <br>
+</p>
+
+
+<?php
+   
+// if the user name is submitted then
+ $reload=FALSE;
+   
+
+if(array_key_exists('username', $_POST) ){
+    $reload=TRUE;    
+    //session_start();
+
+
+
+?>
+    <form action='manageInstruments.php' method=POST>
+     <input type="submit" name= "Log out" value = "Log out">
+    </form>
+
+<?php
+   echo "Welcome " . $_POST['username'];
+   // print the number of records it has deleted 
+
+//    if($reload)
+//    {
+//     header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
+//     exit();
+
+  // }
+
+}
+?>
+<?php
+if(!array_key_exists('username', $_POST))
+    {
+        
+?>
+        <form action='manageInstruments.php' method=POST>
+        <input type="text" name="username" placeholder="Enter Username">    
+        <input type="submit" name= "Remember session" value = "Remember session">
+<?php 
+    }
+
+
+
 ?>
 
 <?php 
@@ -82,7 +138,7 @@ if(array_key_exists("add_records", $_POST))
     if($needs_reload=TRUE)
     {
        header("Location: {$_SERVER['REQUEST_URI']}", true, 303);
-        exit(); 
+        //exit(); 
 
     }
 }
@@ -180,6 +236,35 @@ function result_to_table($res) {
 }
 ?>
 
+<?php 
+$lightmode=TRUE;
+if(array_key_exists('toggle_dark_mode', $_POST) && $lightmode==TRUE){
+?>  
+    <style>
+        h1, h2, h3, p, pre, table, ul, li 
+        {
+            color: white;
+                }
+
+                table, th, td {
+ 
+                    border: 1px solid white;
+
+                }
+
+                body {
+
+                    background-color: black;
+                    
+                }
+    </style>
+
+<?php
+        $lightmode=FALSE;
+}
+?>
+
+
 <form action="manageInstruments.php" method=POST>
 <?php 
 $results = $conn->query($sql);
@@ -193,3 +278,8 @@ $conn->close();
 <form action='manageInstruments.php' method=POST>
 <input type="submit" name= "add_records" value="add records" method=POST/>
 </form>
+
+<form action='manageInstruments.php' method=POST>
+<input type="submit" name= "toggle_dark_mode" value="Toggle Light/Dark Mode" method=POST/>
+</form>
+    
