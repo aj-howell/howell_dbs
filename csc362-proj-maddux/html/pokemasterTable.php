@@ -74,6 +74,5 @@ $result = $conn->query($sql_query);
 //call function which will print the table
 res_to_table($result);
 
-?>
 
-<?php ?>
+?>

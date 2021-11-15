@@ -14,25 +14,29 @@ CREATE DATABASE pokemon_db;
 
 USE pokemon_db;
 
---Source all sql files
-SOURCE Pokemasters.sql;
-SOURCE Types.sql;
-SOURCE Moves.sql;
-SOURCE Pokedex.sql;
-SOURCE OwnedPokemon.sql;
-SOURCE Schedule.sql;
-SOURCE PokemonTypes.sql;
-SOURCE KnownMoves.sql;
-SOURCE ForgottenMoves.sql;
-SOURCE RatingCounts.sql; 
-SOURCE PokemasterRatings.sql;
+-- Source all sql files
+SOURCE Tables/Pokemasters.sql;
+SOURCE Tables/Types.sql;
+SOURCE Tables/Moves.sql;
+SOURCE Tables/Pokedex.sql;
+SOURCE Tables/OwnedPokemon.sql;
+SOURCE Tables/Schedule.sql;
+SOURCE Tables/PokemonTypes.sql;
+SOURCE Tables/KnownMoves.sql;
+SOURCE Tables/ForgottenMoves.sql;
+SOURCE Tables/RatingCounts.sql; 
+SOURCE Tables/PokemasterRatings.sql;
 
---Generate views
-SOURCE ViewForgottenMoves.sql;
-SOURCE ViewKnownMoves.sql;
-SOURCE ViewOwnedPokemon.sql;
-SOURCE ViewPokedex.sql;
-SOURCE ViewPokemasterRatings.sql;
-SOURCE ViewPokemasters.sql;
-SOURCE ViewRatingCounts.sql;
-SOURCE ViewTypes.sql;
+-- Add values to the table
+SOURCE Tables/TableValues.sql;
+
+-- Generate views
+SOURCE DML/ViewForgottenMoves.sql;
+SOURCE DML/ViewKnownMoves.sql;
+SOURCE DML/ViewOwnedPokemon.sql;
+SOURCE DML/ViewPokedex.sql;
+SOURCE DML/ViewPokemasterRatings.sql;
+SOURCE DML/ViewPokemasters.sql;
+SOURCE DML/ViewRatingCounts.sql;
+SOURCE DML/ViewTypes.sql;
+SOURCE DML/V_OwnedPokemonJoin.sql;
