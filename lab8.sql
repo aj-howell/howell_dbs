@@ -56,7 +56,14 @@ RETURN
         WHERE trainer_id = trainer_id1
     );
 -- SELECT party_size(2);
-
+DROP FUNCTION IF EXISTS pokemon_owned;
+CREATE FUNCTION pokemon_owned(trainer_id1 INT)
+RETURNS INT 
+RETURN
+    (
+        SELECT COUNT(trainer_id) FROM pokemon
+        WHERE trainer_id = trainer_id1
+    );
 -- if the party is too large 
 DELIMITER //
  CREATE OR REPLACE TRIGGER max_party
@@ -76,9 +83,14 @@ DELIMITER $$
  BEFORE DELETE ON trainer_party_members
  FOR EACH ROW
     BEGIN
-        IF party_size(OLD.trainer_id) = 1 THEN
+        IF party_size(OLD.trainer_id) = 1 AND pokemon_owned(OLD.trainer_id) > 1 THEN
             SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='Must have at least one pokemon in the party';
-        END IF; 
+        END IF;
+
+        IF party_size(OLD.trainer_id) = 1 THEN 
+            SET FOREIGN_KEY_CHECKS=0;
+        END IF;
+
     END; $$
 
  DELIMITER ;
@@ -146,17 +158,43 @@ DELIMITER ;
 
 -- If all the pokemon that the trainer owns are no longer there then delete the trainer
 -- going off the assumption that the party keeps track of what the trainer last had in his party changes would be made as told
-DELIMITER $$
 
- CREATE OR REPLACE TRIGGER delete_trainer
- BEFORE DELETE ON pokemon
- FOR EACH ROW
-    BEGIN
-        IF EXISTS(SELECT * FROM pokemon WHERE trainer_id = OLD.trainer_id) THEN
-            SET FOREIGN_KEY_CHECKS=0;
-            DELETE FROM trainers WHERE trainer_id = OLD.trainer_id;
+
+-- tried doing it through a trigger and realized it was just more efficient to do within a procedure as triggers 
+-- can only operate on one table effectively
+
+--  CREATE OR REPLACE TRIGGER delete_pokemon
+--  BEFORE DELETE ON pokemon
+--  FOR EACH ROW
+--     BEGIN 
+--         IF EXISTS(SELECT * FROM pokemon WHERE trainer_id = OLD.trainer_id) THEN
+--                 SET FOREIGN_KEY_CHECKS=0;
+--                 IF pokemon_owned(OLD.trainer_id) = 0 THEN
+--                     DELETE FROM trainers WHERE trainer_id = OLD.trainer_id;
+--                 END IF;
+--         END IF; 
+        
+--     END; $$
+
+--  DELIMITER ;
+
+DELIMITER $$
+-- call this procedure to delete the trainer
+CREATE PROCEDURE delete_trainer(IN trainer_id1 INT)
+
+BEGIN 
+   IF EXISTS(SELECT * FROM pokemon WHERE trainer_id = trainer_id1) THEN
+                SET FOREIGN_KEY_CHECKS=0;
+                DELETE FROM pokemon WHERE trainer_id=trainer_id1;
+                
+
+                IF pokemon_owned(trainer_id1) = 0 THEN
+                    DELETE FROM trainers WHERE trainer_id = trainer_id1;
+                    DELETE FROM trainer_party_members WHERE trainer_id=trainer_id1;
+                    
+                END IF;
         END IF; 
         
     END; $$
 
- DELIMITER ;
+DELIMITER ;
