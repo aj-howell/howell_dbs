@@ -145,6 +145,7 @@ DELIMITER ;
 	--   WHERE trainer_id= 2;
 
 -- If all the pokemon that the trainer owns are no longer there then delete the trainer
+-- going off the assumption that the party keeps track of what the trainer last had in his party changes would be made as told
 DELIMITER $$
 
  CREATE OR REPLACE TRIGGER delete_trainer
