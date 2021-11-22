@@ -11,6 +11,7 @@ trainer_id INT NOT NULL,
 trainer_name VARCHAR(25) NOT NULL,
 PRIMARY KEY(trainer_id)
 
+
 );
 
 
@@ -28,7 +29,6 @@ CREATE TABLE pokemon
     FOREIGN KEY (trainer_id) REFERENCES trainers(trainer_id),
     FOREIGN KEY (species_name) REFERENCES pokemon_species(species_name),
     PRIMARY KEY(pokemon_id)
-   -- SET FOREIGN_KEY_CHECKS=0
    
 
 );
@@ -41,7 +41,6 @@ CREATE TABLE trainer_party_members
     FOREIGN KEY (trainer_id) REFERENCES trainers(trainer_id),
     FOREIGN KEY (pokemon_id) REFERENCES pokemon(pokemon_id),
     PRIMARY KEY(trainer_id, pokemon_id)
-
 );
 
 SOURCE insertlab8.sql;
@@ -144,3 +143,19 @@ DELIMITER ;
     --   Update trainer_party_members
 	--   SET pokemon_id= 2
 	--   WHERE trainer_id= 2;
+
+-- If all the pokemon that the trainer owns are no longer there then delete the trainer
+DELIMITER $$
+
+ CREATE OR REPLACE TRIGGER delete_trainer
+ BEFORE DELETE ON pokemon
+ FOR EACH ROW
+    BEGIN
+        IF EXISTS(SELECT * FROM pokemon WHERE trainer_id = OLD.trainer_id) THEN
+            SET FOREIGN_KEY_CHECKS=0;
+            DELETE FROM trainers WHERE trainer_id = OLD.trainer_id;
+        END IF; 
+        
+    END; $$
+
+ DELIMITER ;
