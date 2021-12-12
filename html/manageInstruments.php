@@ -1,3 +1,5 @@
+<!-- WB: Don't forget to implement P/R/G for dark mode. Also, it seems that the user id 
+not able to stay logged in. The number of records is not correctly logged as a result. -->
 <?php
 session_start();
 // $_SESSION['username']=
