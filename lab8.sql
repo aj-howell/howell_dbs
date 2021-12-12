@@ -144,17 +144,18 @@ END; //
 
 DELIMITER ;
  
- --CALL trade(1,11,1,2);
+
+CALL trade(1,11,1,2);
 
 -- cannot update the trainer of the pokemon
---  Update trainer_party_members
--- 	SET trainer_id= 2
--- 	WHERE pokemon_id= 6;
+ Update trainer_party_members
+	SET trainer_id= 2
+	WHERE pokemon_id= 6;
 
 -- can update the pokemon they have in their party if they actually own it 
-    --   Update trainer_party_members
-	--   SET pokemon_id= 2
-	--   WHERE trainer_id= 2;
+      Update trainer_party_members
+	  SET pokemon_id= 2
+	  WHERE trainer_id= 2;
 
 -- If all the pokemon that the trainer owns are no longer there then delete the trainer
 -- going off the assumption that the party keeps track of what the trainer last had in his party changes would be made as told
@@ -162,6 +163,8 @@ DELIMITER ;
 
 -- tried doing it through a trigger and realized it was just more efficient to do within a procedure as triggers 
 -- can only operate on one table effectively
+
+-- WB: Exactly; this can only be really done right using a procedure.
 
 --  CREATE OR REPLACE TRIGGER delete_pokemon
 --  BEFORE DELETE ON pokemon
